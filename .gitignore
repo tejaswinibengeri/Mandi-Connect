@@ -1,0 +1,21 @@
+# Python
+.venv
+__pycache__
+*.pyc
+.env
+
+# Node
+node_modules
+frontend/node_modules
+
+# Build
+dist
+frontend/dist
+
+# Logs
+npm-debug.log
+
+# OS
+.DS_Store
+
+backend/.env
