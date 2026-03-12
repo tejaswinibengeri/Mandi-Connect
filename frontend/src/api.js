@@ -2,13 +2,13 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
 const api = axios.create({
-  baseURL: '/api/',
-  timeout: 15000, // 15 seconds to catch extreme latency
+  baseURL: 'https://mandi-connect-1.onrender.com/api/',
+  timeout: 15000,
 });
 
 // Auto-retry failing requests (network drops, 5xx errors)
 axiosRetry(api, {
-  retries: 3, 
+  retries: 3,
   retryDelay: (retryCount) => {
     return retryCount * 2000; // time interval increases with each retry 2s, 4s, 6s...
   },
