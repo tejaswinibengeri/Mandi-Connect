@@ -10,7 +10,13 @@ import os
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
-
+def post(self, request, *args, **kwargs):
+    data = request.data.copy()
+    if "phone" in data:
+        data["username"] = data["phone"]
+    request._full_data = data
+    return super().post(request, *args, **kwargs)
+    
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register_user(request):
