@@ -13,6 +13,7 @@ class TransportSerializer(serializers.ModelSerializer):
 class PaymentHistorySerializer(serializers.ModelSerializer):
     crop_name = serializers.ReadOnlyField(source='crop.crop_name')
     farmer_name = serializers.ReadOnlyField(source='farmer.name')
+    farmer_qr_code = serializers.ImageField(source='farmer.upi_qr_code', read_only=True)
     retailer_name = serializers.ReadOnlyField(source='retailer.name')
 
     class Meta:

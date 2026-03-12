@@ -60,7 +60,15 @@ const UPIPayment = () => {
               Scan the QR code below with any UPI app (GPay, PhonePe, Paytm) to securely pay the exact amount.
             </p>
             <div style={{ background: 'white', padding: '1rem', display: 'inline-block', borderRadius: '12px', border: '1px solid #e5e7eb', marginBottom: '1.5rem' }}>
-              <QRCodeSVG value={upiLink} size={200} />
+              {payment.farmer_qr_code ? (
+                <img 
+                  src={payment.farmer_qr_code} 
+                  alt="Farmer UPI QR" 
+                  style={{ width: '200px', height: '200px', objectFit: 'contain' }} 
+                />
+              ) : (
+                <QRCodeSVG value={upiLink} size={200} />
+              )}
             </div>
 
             <p style={{ marginBottom: '1rem', fontWeight: 600 }}>OR</p>

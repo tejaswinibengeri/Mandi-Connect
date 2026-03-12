@@ -5,19 +5,6 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from .serializers import UserSerializer, ProfileSerializer, MyTokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-def get_chatbot_client():
-    try:
-        import openai
-        api_key = os.getenv("OPENAI_API_KEY")
-        if api_key and "your_openai_api_key" not in api_key:
-            return openai.OpenAI(api_key=api_key)
-    except Exception:
-        pass
-    return None
 
 
 class MyTokenObtainPairView(TokenObtainPairView):
@@ -39,10 +26,10 @@ def register_user(request):
 def profile(request):
     user = request.user
     if request.method == 'GET':
-        serializer = ProfileSerializer(user)
+        serializer = ProfileSerializer(user, context={'request': request})
         return Response(serializer.data)
     else:
-        serializer = ProfileSerializer(user, data=request.data, partial=True)
+        serializer = ProfileSerializer(user, data=request.data, partial=True, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -53,36 +40,22 @@ def profile(request):
 def chatbot(request):
     user_message = request.data.get('message', '').lower()
     
+    # Strictly Rule-Based Help Assistant
     pre_programmed_responses = {
-        "how do i add crops": "To add crops, visit the 'Add Crop' page while logged in as a Farmer. Fill in the crop name, price, and quantity, then submit the form.",
-        "how do i buy crops": "To buy crops, browse the 'Marketplace' as a Retailer, select the crop you need, click 'Buy', and complete the payment process.",
-        "how does transportation work": "Once an order is placed, transportation tracking begins. You can view the delivery status in your 'History' or 'Orders' section.",
-        "how do i receive payment": "Payments are made via UPI. Once a retailer completes the payment, the farmer is notified and the status is updated in the system.",
-        "i need help placing an order": "To place an order, go to the Marketplace, choose a crop, specify the quantity, and proceed with the UPI payment.",
-        "how can i update my profile": "You can update your profile details like Aadhaar or UPI ID by going to the 'Profile' section and clicking 'Edit Profile'."
+        "how do i add crops": "To add crops: 1. Login as Farmer 2. Go to 'Add Crop' page 3. Fill in crop name, price, and quantity 4. Click Submit.",
+        "how do i buy crops": "To buy crops: 1. Login as Retailer 2. Browse the 'Marketplace' 3. Click 'Buy' on the desired crop 4. Complete the UPI payment.",
+        "how does transportation work": "After you place an order, you can add driver and vehicle details. Both farmers and retailers can track the 'In Transit' and 'Delivered' status in the History section.",
+        "how do i receive payment": "Retailers pay via the UPI QR code shown after ordering. Farmers can verify payments in their 'History' section and mark them as paid.",
+        "i need help placing an order": "Make sure you are a registered Retailer. Go to the Marketplace, choose your crop, and click 'Place Order'. You will then see the payment QR code.",
+        "how can i update my profile": "Go to the 'Profile' section from the menu and click 'Edit Profile'. You can update your Aadhaar, UPI details, and even upload your Payment QR Code.",
+        "hello": "Hello! I am the MandiConnect Assistant. How can I help you today? You can ask about adding crops, buying, payments, or transportation.",
+        "hi": "Hi there! Need help with MandiConnect? Ask me about crop listings, orders, or UPI payments.",
     }
     
-    # Check for direct matches first
+    # Check for direct matches
     for key, val in pre_programmed_responses.items():
         if key in user_message:
             return Response({"response": val})
             
-    # AI Fallback
-    client = get_chatbot_client()
-    if client:
-        try:
-            response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
-                messages=[
-                    {"role": "system", "content": "You are a helpful assistant for MandiConnect, a farm-to-retail marketplace. Help users with adding crops, buying, payments, and transport. If you cannot answer a query reliably or it's unrelated to MandiConnect, respond with: 'Please contact platform support for further assistance.'"},
-                    {"role": "user", "content": request.data.get('message', '')}
-                ]
-            )
-            ai_reply = response.choices[0].message.content
-            return Response({"response": ai_reply})
-        except Exception as e:
-            print(f"AI Chatbot error: {e}")
-            pass
-            
-    # Final Fallback
-    return Response({"response": "Please contact platform support for further assistance."})
+    # If no rule matches, provide platform support fallback
+    return Response({"response": "I'm sorry, I don't have a specific answer for that. Please contact MandiConnect platform support for further assistance."})

@@ -1,8 +1,9 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.http import HttpResponse
+from django.views.generic import TemplateView
 
 from users.views import register_user, MyTokenObtainPairView, profile, chatbot
 from crops.views import get_crops, add_crop, update_crop, delete_crop
@@ -12,13 +13,11 @@ from orders.views import (
     get_payment_history, mark_payment_paid, crop_history
 )
 
-def home(request):
-    return HttpResponse("Mandi Connect Backend Running 🚀")
+def home_api(request):
+    return HttpResponse("Mandi Connect API is Running 🚀")
 
 urlpatterns = [
-
-    path('', home),
-
+    path('api/status/', home_api),
     path('admin/', admin.site.urls),
 
     # Auth APIs
@@ -54,3 +53,8 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Serve React index.html for all other routes
+urlpatterns += [
+    re_path(r'^.*$', TemplateView.as_view(template_name='index.html')),
+]

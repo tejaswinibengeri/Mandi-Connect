@@ -32,7 +32,7 @@ const Profile = () => {
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
           {profile.profile_photo ? (
-            <img src={`/media/${profile.profile_photo}`} alt="Profile" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }} />
+            <img src={profile.profile_photo} alt="Profile" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover' }} />
           ) : (
             <div style={{ width: '80px', height: '80px', borderRadius: '50%', background: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <User size={40} color="#9ca3af" />
@@ -68,6 +68,14 @@ const Profile = () => {
           <p><strong>Bank Name:</strong> {profile.bank_name || 'Not provided'}</p>
           <p><strong>Account Number:</strong> {profile.account_number || 'Not provided'}</p>
           <p><strong>IFSC Code:</strong> {profile.ifsc_code || 'Not provided'}</p>
+          {profile.role === 'farmer' && profile.upi_qr_code && (
+            <div style={{ marginTop: '1rem' }}>
+              <strong>UPI QR Code:</strong>
+              <div style={{ marginTop: '0.5rem' }}>
+                <img src={profile.upi_qr_code} alt="UPI QR" style={{ width: '150px', height: '150px', borderRadius: '8px', border: '1px solid var(--border)' }} />
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

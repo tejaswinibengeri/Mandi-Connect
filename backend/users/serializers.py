@@ -25,7 +25,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'id', 'name', 'phone', 'email', 'location', 'role',
             'profile_photo', 'aadhaar_number', 'aadhaar_image', 'is_verified',
             'upi_id', 'account_holder_name', 'bank_name',
-            'account_number', 'ifsc_code',
+            'account_number', 'ifsc_code', 'upi_qr_code',
         )
         read_only_fields = ('id', 'role', 'phone', 'is_verified')
 

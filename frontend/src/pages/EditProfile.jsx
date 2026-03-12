@@ -17,6 +17,7 @@ const EditProfile = () => {
   });
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [aadhaarImage, setAadhaarImage] = useState(null);
+  const [upiQrCode, setUpiQrCode] = useState(null);
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -56,6 +57,7 @@ const EditProfile = () => {
       });
       if (profilePhoto) data.append('profile_photo', profilePhoto);
       if (aadhaarImage) data.append('aadhaar_image', aadhaarImage);
+      if (upiQrCode) data.append('upi_qr_code', upiQrCode);
 
       await api.put('profile/', data, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -109,6 +111,9 @@ const EditProfile = () => {
           
           <label>IFSC Code</label>
           <input type="text" name="ifsc_code" value={formData.ifsc_code} onChange={handleChange} />
+
+          <label>UPI QR Code (Farmer Only)</label>
+          <input type="file" accept="image/*" onChange={(e) => setUpiQrCode(e.target.files[0])} />
           
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
             <button type="submit" className="btn-primary" style={{ flex: 1 }} disabled={submitting}>

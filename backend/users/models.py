@@ -45,6 +45,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     bank_name = models.CharField(max_length=255, blank=True, null=True)
     account_number = models.CharField(max_length=50, blank=True, null=True)
     ifsc_code = models.CharField(max_length=20, blank=True, null=True)
+    upi_qr_code = models.ImageField(upload_to='upi_qrs/', blank=True, null=True)
 
     objects = UserManager()
 
