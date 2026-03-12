@@ -2,7 +2,7 @@ import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
 const api = axios.create({
-  baseURL: '/api/',
+  baseURL: "https://mandi-connect-3.onrender.com/api/",
   timeout: 15000,
 });
 
