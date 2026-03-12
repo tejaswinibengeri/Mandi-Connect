@@ -1,7 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PlusCircle, LayoutDashboard } from 'lucide-react';
+import { useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div style={{ paddingBottom: '4rem' }}>
       {/* Premium Hero Section */}
@@ -24,6 +28,51 @@ const Home = () => {
           </p>
           
           <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            {user?.role === 'farmer' && (
+              <>
+                <Link to="/add-crop">
+                  <button style={{ 
+                    background: 'linear-gradient(135deg, #22c55e 0%, #16a34a 100%)', 
+                    color: '#fff', 
+                    padding: '1rem 2.5rem', 
+                    fontWeight: 700, 
+                    fontSize: '1.1rem', 
+                    borderRadius: '999px',
+                    boxShadow: '0 0 20px rgba(34, 197, 94, 0.4)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                  onMouseOver={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 0 30px rgba(34, 197, 94, 0.6)'; }}
+                  onMouseOut={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(34, 197, 94, 0.4)'; }}
+                  >
+                    <PlusCircle size={20} /> Add New Crop
+                  </button>
+                </Link>
+                <Link to="/farmer-dashboard">
+                  <button style={{ 
+                    background: 'rgba(255, 255, 255, 0.05)', 
+                    color: '#fff', 
+                    padding: '1rem 2.5rem', 
+                    fontWeight: 700, 
+                    fontSize: '1.1rem', 
+                    borderRadius: '999px',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    transition: 'all 0.3s ease',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}
+                  onMouseOver={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'; }}
+                  onMouseOut={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)'; }}
+                  >
+                    <LayoutDashboard size={20} /> Manage My Crops
+                  </button>
+                </Link>
+              </>
+            )}
             <Link to="/register">
               <button style={{ 
                 background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)', 

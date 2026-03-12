@@ -19,7 +19,7 @@ const Navbar = () => {
               {user.role === 'farmer' ? (
                 <>
                   <Link to="/farmer-dashboard" style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'var(--text-main)' }} onMouseOver={e => e.currentTarget.style.color='var(--primary)'} onMouseOut={e => e.currentTarget.style.color='var(--text-main)'}>
-                    <LayoutDashboard size={18} /> Dashboard
+                    <LayoutDashboard size={18} /> Manage Crops
                   </Link>
                   <Link to="/add-crop" style={{ display: 'flex', alignItems: 'center', gap: '5px', color: 'var(--text-main)' }} onMouseOver={e => e.currentTarget.style.color='var(--primary)'} onMouseOut={e => e.currentTarget.style.color='var(--text-main)'}>
                     <PlusCircle size={18} /> Add Crop

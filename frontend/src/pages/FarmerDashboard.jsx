@@ -17,9 +17,8 @@ const FarmerDashboard = () => {
   }, []);
 
   const fetchCrops = async () => {
-    const res = await api.get('crops/');
-    const myCrops = res.data.filter(c => c.farmer === user.user_id);
-    setCrops(myCrops);
+    const res = await api.get('farmer-crops/');
+    setCrops(res.data);
   };
 
   const fetchOrders = async () => {

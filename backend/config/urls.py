@@ -6,7 +6,7 @@ from django.http import HttpResponse
 from django.views.generic import TemplateView
 
 from users.views import register_user, MyTokenObtainPairView, profile, chatbot
-from crops.views import get_crops, add_crop, update_crop, delete_crop
+from crops.views import get_crops, add_crop, update_crop, delete_crop, farmer_crops
 from orders.views import (
     place_order, get_orders, update_order_status, delete_order,
     add_transport, update_transport_status, get_transport,
@@ -29,6 +29,7 @@ urlpatterns = [
     # Crops APIs
     path('api/crops/', get_crops),
     path('api/add-crop/', add_crop),
+    path('api/farmer-crops/', farmer_crops),
     path('api/update-crop/<int:pk>/', update_crop),
     path('api/delete-crop/<int:pk>/', delete_crop),
 

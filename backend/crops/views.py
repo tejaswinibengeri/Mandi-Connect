@@ -47,3 +47,12 @@ def delete_crop(request, pk):
     
     crop.delete()
     return Response(status=status.HTTP_204_NO_CONTENT)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def farmer_crops(request):
+    if request.user.role != 'farmer':
+        return Response({'error': 'Only farmers can access this'}, status=status.HTTP_403_FORBIDDEN)
+    crops = Crop.objects.filter(farmer=request.user).order_by('-created_at')
+    serializer = CropSerializer(crops, many=True)
+    return Response(serializer.data)
