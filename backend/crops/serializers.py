@@ -6,5 +6,5 @@ class CropSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Crop
-        fields = '__all__'
+        fields = ['id', 'farmer', 'farmer_name', 'crop_name', 'quantity', 'price', 'location', 'image', 'created_at']
         extra_kwargs = {'farmer': {'required': False}}

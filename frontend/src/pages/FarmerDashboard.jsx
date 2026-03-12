@@ -47,7 +47,11 @@ const FarmerDashboard = () => {
 
   return (
     <div className="container" style={{ marginTop: '2rem' }}>
-      <h2 style={{ marginBottom: '1rem' }}>Welcome, {user?.name} 🌾</h2>
+      <div style={{ background: 'linear-gradient(135deg, #064e3b 0%, #065f46 100%)', borderRadius: '1.5rem', padding: '3rem', marginBottom: '3rem', position: 'relative', overflow: 'hidden', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3)' }}>
+        <div style={{ position: 'absolute', top: '-20px', right: '-20px', fontSize: '10rem', opacity: 0.1 }}>🚜</div>
+        <h2 style={{ fontSize: '2.5rem', margin: 0, color: '#fff', position: 'relative', zIndex: 1 }}>Jai Jawan, Jai Kisan! 🌾</h2>
+        <p style={{ color: '#d1fae5', fontSize: '1.2rem', marginTop: '0.5rem', opacity: 0.9, position: 'relative', zIndex: 1 }}>Welcome back, {user?.name}. Your hard work keeps the nation thriving.</p>
+      </div>
 
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
         <button onClick={() => setTab('crops')} className="btn-primary" style={{ opacity: tab === 'crops' ? 1 : 0.5 }}>

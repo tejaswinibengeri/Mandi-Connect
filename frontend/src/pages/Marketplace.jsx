@@ -93,11 +93,13 @@ const Marketplace = () => {
         <p style={{ color: 'var(--text-muted)', fontSize: '1.1rem', maxWidth: '600px' }}>Discover and buy verified, high-quality crops directly from our network of skilled farmers.</p>
         
         {user?.role === 'farmer' && (
-          <Link to="/add-crop" style={{ marginTop: '1.5rem' }}>
-            <button className="btn-primary" style={{ background: 'var(--secondary)', display: 'flex', alignItems: 'center', gap: '8px', padding: '0.75rem 2rem' }}>
-              <PlusCircle size={20} /> Add New Crop Listing
-            </button>
-          </Link>
+          <button 
+            onClick={() => window.location.href = '/add-crop'} 
+            className="btn-primary" 
+            style={{ marginTop: '1.5rem', background: 'var(--secondary)', display: 'flex', alignItems: 'center', gap: '8px', padding: '0.75rem 2rem' }}
+          >
+            <PlusCircle size={20} /> Add New Crop Listing
+          </button>
         )}
 
         <div style={{ position: 'relative', width: '100%', maxWidth: '500px', marginTop: '2rem' }}>
@@ -151,7 +153,12 @@ const Marketplace = () => {
                 </div>
 
                 <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', gap: '0.25rem', alignItems: 'center', marginBottom: '0.25rem' }}>📍 {crop.location}</p>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', gap: '0.25rem', alignItems: 'center' }}>👨‍🌾 {crop.farmer_name}</p>
+                <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+                  👨‍🌾 {crop.farmer_name} 
+                  <span style={{ marginLeft: '6px', color: 'var(--primary)', fontSize: '0.8rem', display: 'inline-flex', alignItems: 'center', gap: '2px', background: 'rgba(0, 255, 136, 0.05)', padding: '2px 6px', borderRadius: '4px' }}>
+                    ✔ Verified
+                  </span>
+                </p>
 
                 <div style={{ margin: '1.25rem 0', background: '#f8fafc', padding: '1rem', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>

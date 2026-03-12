@@ -14,7 +14,10 @@ const Home = () => {
         {/* Glow Effects */}
         <div style={{ position: 'absolute', top: '-10%', left: '-10%', width: '500px', height: '500px', background: 'var(--primary)', filter: 'blur(200px)', opacity: 0.25, zIndex: 0, borderRadius: '50%' }}></div>
         <div style={{ position: 'absolute', bottom: '-10%', right: '-10%', width: '500px', height: '500px', background: 'var(--secondary)', filter: 'blur(200px)', opacity: 0.2, zIndex: 0, borderRadius: '50%' }}></div>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '800px', height: '800px', background: 'radial-gradient(circle, rgba(0,255,136,0.05) 0%, rgba(0,0,0,0) 70%)', zIndex: 0 }}></div>
+        
+        {/* Farmer Hero Image Overlay */}
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', backgroundImage: 'url("/hero-farmer.png")', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.15, zIndex: 0 }}></div>
+        <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'linear-gradient(to bottom, transparent 0%, #050505 100%)', zIndex: 0 }}></div>
 
         <div className="container" style={{ position: 'relative', zIndex: 1, animation: 'fadeIn 0.8s ease-out' }}>
           <span style={{ display: 'inline-block', padding: '0.4rem 1.25rem', background: 'rgba(0, 255, 136, 0.1)', border: '1px solid rgba(0, 255, 136, 0.3)', color: 'var(--primary)', borderRadius: '999px', fontSize: '0.875rem', fontWeight: 700, marginBottom: '2rem', boxShadow: '0 0 15px rgba(0, 255, 136, 0.2)' }}>
@@ -159,6 +162,36 @@ const Home = () => {
               <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', lineHeight: 1.7 }}>{step.desc}</p>
             </div>
           ))}
+        </div>
+
+        {/* Farmer Pride Section */}
+        <div style={{ marginTop: '10rem', background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%)', borderRadius: '2rem', padding: '5rem 3rem', border: '1px solid rgba(34, 197, 94, 0.2)', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ position: 'absolute', top: '-50px', right: '-50px', fontSize: '15rem', opacity: 0.05 }}>🚜</div>
+          <div style={{ position: 'relative', zIndex: 1, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+            <div>
+              <h2 style={{ fontSize: '2.5rem', marginBottom: '1.5rem', color: '#fff' }}>Empowering the Hands That Feed Us</h2>
+              <p style={{ color: '#94a3b8', fontSize: '1.1rem', lineHeight: 1.8, marginBottom: '2rem' }}>
+                MandiConnect isn't just a marketplace; it's a digital revolution for the Indian Farmer. We provide the tools, the network, and the security to ensure your hard work results in the maximum profit you deserve.
+              </p>
+              <div style={{ display: 'flex', gap: '2rem' }}>
+                <div style={{ textAlign: 'center' }}>
+                  <h4 style={{ fontSize: '2rem', color: 'var(--primary)', margin: 0 }}>100%</h4>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Direct Profit</p>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <h4 style={{ fontSize: '2rem', color: 'var(--secondary)', margin: 0 }}>Verified</h4>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Retail Buyers</p>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <h4 style={{ fontSize: '2rem', color: '#fff', margin: 0 }}>Instant</h4>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>UPI Payment</p>
+                </div>
+              </div>
+            </div>
+            <div style={{ borderRadius: '1.5rem', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+              <img src="/hero-farmer.png" alt="Happy Farmer" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+          </div>
         </div>
       </div>
     </div>
