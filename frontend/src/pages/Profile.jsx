@@ -61,22 +61,24 @@ const Profile = () => {
           <p><strong>Location:</strong> {profile.location}</p>
         </div>
 
-        <div>
-          <h3 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Account & Payment Details</h3>
-          <p><strong>UPI ID:</strong> {profile.upi_id || 'Not provided'}</p>
-          <p><strong>Account Holder:</strong> {profile.account_holder_name || 'Not provided'}</p>
-          <p><strong>Bank Name:</strong> {profile.bank_name || 'Not provided'}</p>
-          <p><strong>Account Number:</strong> {profile.account_number || 'Not provided'}</p>
-          <p><strong>IFSC Code:</strong> {profile.ifsc_code || 'Not provided'}</p>
-          {profile.role === 'farmer' && profile.upi_qr_code && (
-            <div style={{ marginTop: '1rem' }}>
-              <strong>UPI QR Code:</strong>
-              <div style={{ marginTop: '0.5rem' }}>
-                <img src={profile.upi_qr_code} alt="UPI QR" style={{ width: '150px', height: '150px', borderRadius: '8px', border: '1px solid var(--border)' }} />
+        {profile.role === 'farmer' && (
+          <div>
+            <h3 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem', marginBottom: '1rem' }}>Account & Payment Details</h3>
+            <p><strong>UPI ID:</strong> {profile.upi_id || 'Not provided'}</p>
+            <p><strong>Account Holder:</strong> {profile.account_holder_name || 'Not provided'}</p>
+            <p><strong>Bank Name:</strong> {profile.bank_name || 'Not provided'}</p>
+            <p><strong>Account Number:</strong> {profile.account_number || 'Not provided'}</p>
+            <p><strong>IFSC Code:</strong> {profile.ifsc_code || 'Not provided'}</p>
+            {profile.upi_qr_code && (
+              <div style={{ marginTop: '1rem' }}>
+                <strong>UPI QR Code:</strong>
+                <div style={{ marginTop: '0.5rem' }}>
+                  <img src={profile.upi_qr_code} alt="UPI QR" style={{ width: '150px', height: '150px', borderRadius: '8px', border: '1px solid var(--border)' }} />
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

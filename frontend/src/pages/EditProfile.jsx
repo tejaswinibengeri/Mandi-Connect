@@ -14,6 +14,7 @@ const EditProfile = () => {
     bank_name: '',
     account_number: '',
     ifsc_code: '',
+    role: '',
   });
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [aadhaarImage, setAadhaarImage] = useState(null);
@@ -37,6 +38,7 @@ const EditProfile = () => {
         bank_name: res.data.bank_name || '',
         account_number: res.data.account_number || '',
         ifsc_code: res.data.ifsc_code || '',
+        role: res.data.role || '',
       });
     } catch (err) {
       console.error(err);
@@ -96,24 +98,28 @@ const EditProfile = () => {
           <label>Aadhaar Image (Front)</label>
           <input type="file" accept="image/*" onChange={(e) => setAadhaarImage(e.target.files[0])} />
 
-          <h3 style={{ marginTop: '1.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>Payment Details</h3>
-          <label>UPI ID (Mandatory for Farmers)</label>
-          <input type="text" name="upi_id" value={formData.upi_id} onChange={handleChange} placeholder="example@upi" />
-          
-          <label>Account Holder Name</label>
-          <input type="text" name="account_holder_name" value={formData.account_holder_name} onChange={handleChange} />
-          
-          <label>Bank Name</label>
-          <input type="text" name="bank_name" value={formData.bank_name} onChange={handleChange} />
-          
-          <label>Account Number</label>
-          <input type="text" name="account_number" value={formData.account_number} onChange={handleChange} />
-          
-          <label>IFSC Code</label>
-          <input type="text" name="ifsc_code" value={formData.ifsc_code} onChange={handleChange} />
+          {formData.role === 'farmer' && (
+            <>
+              <h3 style={{ marginTop: '1.5rem', marginBottom: '1rem', color: 'var(--primary)' }}>Payment Details</h3>
+              <label>UPI ID (Mandatory for Farmers)</label>
+              <input type="text" name="upi_id" value={formData.upi_id} onChange={handleChange} placeholder="example@upi" />
+              
+              <label>Account Holder Name</label>
+              <input type="text" name="account_holder_name" value={formData.account_holder_name} onChange={handleChange} />
+              
+              <label>Bank Name</label>
+              <input type="text" name="bank_name" value={formData.bank_name} onChange={handleChange} />
+              
+              <label>Account Number</label>
+              <input type="text" name="account_number" value={formData.account_number} onChange={handleChange} />
+              
+              <label>IFSC Code</label>
+              <input type="text" name="ifsc_code" value={formData.ifsc_code} onChange={handleChange} />
 
-          <label>UPI QR Code (Farmer Only)</label>
-          <input type="file" accept="image/*" onChange={(e) => setUpiQrCode(e.target.files[0])} />
+              <label>UPI QR Code (Farmer Only)</label>
+              <input type="file" accept="image/*" onChange={(e) => setUpiQrCode(e.target.files[0])} />
+            </>
+          )}
           
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
             <button type="submit" className="btn-primary" style={{ flex: 1 }} disabled={submitting}>
