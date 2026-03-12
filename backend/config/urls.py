@@ -17,7 +17,7 @@ def home(request):
 
 urlpatterns = [
 
-    path('', home),  # Home route
+    path('', home),
 
     path('admin/', admin.site.urls),
 
@@ -44,11 +44,11 @@ urlpatterns = [
     path('api/transport/status/<int:pk>/', update_transport_status),
     path('api/transport/get/<int:order_id>/', get_transport),
 
-    # Payment History APIs
+    # Payment APIs
     path('api/payments/', get_payment_history),
     path('api/payments/paid/<int:pk>/', mark_payment_paid),
 
-    # Crop History APIs
+    # Crop History
     path('api/history/crops/', crop_history),
 ]
 
