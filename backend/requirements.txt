@@ -6,3 +6,4 @@ mysqlclient
 pillow
 openai
 python-dotenv
+gunicorn
