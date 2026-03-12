@@ -7,16 +7,23 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 import os
 
 
-class MyTokenObtainPairView(TokenObtainPairView):
-    serializer_class = MyTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework.response import Response
+from rest_framework import status
 
-def post(self, request, *args, **kwargs):
-    data = request.data.copy()
-    if "phone" in data:
-        data["username"] = data["phone"]
-    request._full_data = data
-    return super().post(request, *args, **kwargs)
-    
+class MyTokenObtainPairView(TokenObtainPairView):
+
+    def post(self, request, *args, **kwargs):
+        data = request.data.copy()
+
+        if "phone" in data:
+            data["username"] = data["phone"]
+
+        request._full_data = data
+
+        return super().post(request, *args, **kwargs)
+
+
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register_user(request):
