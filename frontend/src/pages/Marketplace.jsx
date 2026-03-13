@@ -224,6 +224,8 @@ const Marketplace = () => {
                 type="number"
                 value={editingCrop.quantity}
                 onChange={e => setEditingCrop({...editingCrop, quantity: e.target.value})}
+                step="0.01"
+                min="0.01"
                 required
               />
               <label>Location</label>
@@ -261,7 +263,8 @@ const Marketplace = () => {
                 value={quantity}
                 onChange={e => setQuantity(e.target.value)}
                 placeholder="Enter quantity"
-                min="1"
+                min="0.01"
+                step="0.01"
                 max={orderModal.quantity}
                 required
               />

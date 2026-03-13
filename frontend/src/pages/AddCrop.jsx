@@ -47,7 +47,7 @@ const AddCrop = () => {
           <input type="text" value={formData.crop_name} onChange={e => setFormData({...formData, crop_name: e.target.value})} placeholder="e.g. Tomatoes, Wheat" required />
           
           <label>Quantity Available (kg)</label>
-          <input type="number" value={formData.quantity} onChange={e => setFormData({...formData, quantity: e.target.value})} placeholder="500" required min="1" />
+          <input type="number" value={formData.quantity} onChange={e => setFormData({...formData, quantity: e.target.value})} placeholder="500" required min="0.01" step="0.01" />
           
           <label>Price per kg (₹)</label>
           <input type="number" value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} placeholder="25" required min="0.01" step="0.01" />

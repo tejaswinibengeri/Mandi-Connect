@@ -102,8 +102,8 @@ const FarmerDashboard = () => {
                 <h3 style={{ marginBottom: '1rem' }}>Edit Crop</h3>
                 <form onSubmit={handleUpdateCrop}>
                   <input type="text" value={editingCrop.crop_name} onChange={e => setEditingCrop({...editingCrop, crop_name: e.target.value})} placeholder="Crop Name" />
-                  <input type="number" value={editingCrop.quantity} onChange={e => setEditingCrop({...editingCrop, quantity: e.target.value})} placeholder="Quantity (kg)" />
-                  <input type="number" value={editingCrop.price} onChange={e => setEditingCrop({...editingCrop, price: e.target.value})} placeholder="Price per kg (₹)" />
+                  <input type="number" value={editingCrop.quantity} onChange={e => setEditingCrop({...editingCrop, quantity: e.target.value})} placeholder="Quantity (kg)" step="0.01" min="0.01" />
+                  <input type="number" value={editingCrop.price} onChange={e => setEditingCrop({...editingCrop, price: e.target.value})} placeholder="Price per kg (₹)" step="0.01" min="0.01" />
                   <input type="text" value={editingCrop.location} onChange={e => setEditingCrop({...editingCrop, location: e.target.value})} placeholder="Location" />
                   <div style={{ display: 'flex', gap: '0.5rem' }}>
                     <button type="submit" className="btn-primary">Save</button>
